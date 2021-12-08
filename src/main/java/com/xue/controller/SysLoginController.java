@@ -35,6 +35,7 @@ public class SysLoginController {
 		sqfShares = sqfshaService.selall_by_securities_code_whether_monitor("300657", "1");
 		System.out.println("sqf=="+sqfShares.getSecuritiesCode());
 		System.out.println("hello,world");
+		System.out.println("hello,world");
 	}
 
 
