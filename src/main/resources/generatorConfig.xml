@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 导入配置文件 -->
+	<properties resource="application.properties" />
+ 
+	<!-- generatorConfig.xml里面context节点的子节点必须按顺序配置,不然会报错 -->
+ 
+	<!-- defaultModelType="flat" 设置复合主键时不单独为主键创建实体 -->
+	<context id="default" defaultModelType="flat" targetRuntime="MyBatis3">
+ 
+		<!-- 生成的POJO实现java.io.Serializable接口 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+		<!--注释 -->
+		<commentGenerator>
+			<!-- 将数据库中表的字段描述信息添加到注释 -->
+			<property name="addRemarkComments" value="true" />
+			<!-- 注释里不添加日期 -->
+			<property name="suppressDate" value="true" />
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+ 
+		<!-- 数据库连接，直接通过${}读取application.properties里的配置 -->
+
+		<!--数据库链接URL，用户名、密码 -->
+		<!-- jdbc连接-->
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://121.40.117.70:3306/mysql?characterEncoding=utf8" userId="centos"
+                        password="123456"/>
+ 
+		<!-- 生成POJO对象，并将类放到com.graduationdesign.pojo包下 -->
+		<javaModelGenerator targetPackage="com.xue.entity.model" targetProject="src/main/java"></javaModelGenerator>
+ 
+		<!-- 生成mapper xml文件，并放到resources下的mapper文件夹下 -->
+		<sqlMapGenerator targetPackage="com.xue.repository.mapper" targetProject="src/main/java"></sqlMapGenerator>
+ 
+		<!-- 生成mapper xml对应dao接口，放到com.graduationdesign.mapper包下 -->
+		<javaClientGenerator targetPackage="com.xue.repository.dao" targetProject="src/main/java" type="XMLMAPPER"></javaClientGenerator>
+
+ 
+		<!-- table标签可以有多个，至少一个，tableName指定表名，可以使用_和%通配符 -->
+		<table tableName="sqf_shares" 
+		enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
+		>
+
+			<!-- 是否只生成POJO对象 -->
+			<property name="modelOnly" value="false" />
+			<property name="useActualColumnNames" value="false"></property>
+			<property name="ignoreQualifiersAtRuntime" value="true"></property>
+			<!-- 数据库中表名有前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 -->
+			<!-- <domainObjectRenamingRule searchString="^sys" replaceString=""/> -->
+			<generatedKey column="cron_id" sqlStatement="Mysql" identity="true"/>
+
+		</table>
+
+	</context>
+	</generatorConfiguration>

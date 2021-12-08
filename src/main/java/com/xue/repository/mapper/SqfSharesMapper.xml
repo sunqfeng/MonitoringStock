@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xue.repository.dao.SqfSharesMapper">
+  <resultMap id="BaseResultMap" type="com.xue.entity.model.SqfShares">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="securities_name" jdbcType="VARCHAR" property="securitiesName" />
+    <result column="securities_code" jdbcType="VARCHAR" property="securitiesCode" />
+    <result column="delegate_status" jdbcType="VARCHAR" property="delegateStatus" />
+    <result column="delegation_category" jdbcType="VARCHAR" property="delegationCategory" />
+    <result column="entrusted_price_purchase" jdbcType="VARCHAR" property="entrustedPricePurchase" />
+    <result column="entrusted_price_sellout" jdbcType="VARCHAR" property="entrustedPriceSellout" />
+    <result column="entrusted_quantity_purchase" jdbcType="VARCHAR" property="entrustedQuantityPurchase" />
+    <result column="entrusted_quantity_sellout" jdbcType="VARCHAR" property="entrustedQuantitySellout" />
+    <result column="date_entrustment_purchase" jdbcType="VARCHAR" property="dateEntrustmentPurchase" />
+    <result column="date_entrustment_sellout" jdbcType="VARCHAR" property="dateEntrustmentSellout" />
+    <result column="time_entrustment_purchase" jdbcType="VARCHAR" property="timeEntrustmentPurchase" />
+    <result column="time_entrustment_sellout" jdbcType="VARCHAR" property="timeEntrustmentSellout" />
+    <result column="bond_yield" jdbcType="VARCHAR" property="bondYield" />
+    <result column="whether_monitor" jdbcType="VARCHAR" property="whetherMonitor" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, securities_name, securities_code, delegate_status, delegation_category, entrusted_price_purchase, 
+    entrusted_price_sellout, entrusted_quantity_purchase, entrusted_quantity_sellout, 
+    date_entrustment_purchase, date_entrustment_sellout, time_entrustment_purchase, time_entrustment_sellout, 
+    bond_yield, whether_monitor
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sqf_shares
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selall_by_securities_code_whether_monitor"  resultMap="BaseResultMap">
+    select * from sqf_shares where securities_code=#{securities_code} and whether_monitor=#{whether_monitor} 
+  </select>
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sqf_shares
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xue.entity.model.SqfShares">
+    insert into sqf_shares (id, securities_name, securities_code, 
+      delegate_status, delegation_category, entrusted_price_purchase, 
+      entrusted_price_sellout, entrusted_quantity_purchase, 
+      entrusted_quantity_sellout, date_entrustment_purchase, 
+      date_entrustment_sellout, time_entrustment_purchase, 
+      time_entrustment_sellout, bond_yield, whether_monitor
+      )
+    values (#{id,jdbcType=INTEGER}, #{securitiesName,jdbcType=VARCHAR}, #{securitiesCode,jdbcType=VARCHAR}, 
+      #{delegateStatus,jdbcType=VARCHAR}, #{delegationCategory,jdbcType=VARCHAR}, #{entrustedPricePurchase,jdbcType=VARCHAR}, 
+      #{entrustedPriceSellout,jdbcType=VARCHAR}, #{entrustedQuantityPurchase,jdbcType=VARCHAR}, 
+      #{entrustedQuantitySellout,jdbcType=VARCHAR}, #{dateEntrustmentPurchase,jdbcType=VARCHAR}, 
+      #{dateEntrustmentSellout,jdbcType=VARCHAR}, #{timeEntrustmentPurchase,jdbcType=VARCHAR}, 
+      #{timeEntrustmentSellout,jdbcType=VARCHAR}, #{bondYield,jdbcType=VARCHAR}, #{whetherMonitor,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xue.entity.model.SqfShares">
+    insert into sqf_shares
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="securitiesName != null">
+        securities_name,
+      </if>
+      <if test="securitiesCode != null">
+        securities_code,
+      </if>
+      <if test="delegateStatus != null">
+        delegate_status,
+      </if>
+      <if test="delegationCategory != null">
+        delegation_category,
+      </if>
+      <if test="entrustedPricePurchase != null">
+        entrusted_price_purchase,
+      </if>
+      <if test="entrustedPriceSellout != null">
+        entrusted_price_sellout,
+      </if>
+      <if test="entrustedQuantityPurchase != null">
+        entrusted_quantity_purchase,
+      </if>
+      <if test="entrustedQuantitySellout != null">
+        entrusted_quantity_sellout,
+      </if>
+      <if test="dateEntrustmentPurchase != null">
+        date_entrustment_purchase,
+      </if>
+      <if test="dateEntrustmentSellout != null">
+        date_entrustment_sellout,
+      </if>
+      <if test="timeEntrustmentPurchase != null">
+        time_entrustment_purchase,
+      </if>
+      <if test="timeEntrustmentSellout != null">
+        time_entrustment_sellout,
+      </if>
+      <if test="bondYield != null">
+        bond_yield,
+      </if>
+      <if test="whetherMonitor != null">
+        whether_monitor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="securitiesName != null">
+        #{securitiesName,jdbcType=VARCHAR},
+      </if>
+      <if test="securitiesCode != null">
+        #{securitiesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delegateStatus != null">
+        #{delegateStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="delegationCategory != null">
+        #{delegationCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustedPricePurchase != null">
+        #{entrustedPricePurchase,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustedPriceSellout != null">
+        #{entrustedPriceSellout,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustedQuantityPurchase != null">
+        #{entrustedQuantityPurchase,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustedQuantitySellout != null">
+        #{entrustedQuantitySellout,jdbcType=VARCHAR},
+      </if>
+      <if test="dateEntrustmentPurchase != null">
+        #{dateEntrustmentPurchase,jdbcType=VARCHAR},
+      </if>
+      <if test="dateEntrustmentSellout != null">
+        #{dateEntrustmentSellout,jdbcType=VARCHAR},
+      </if>
+      <if test="timeEntrustmentPurchase != null">
+        #{timeEntrustmentPurchase,jdbcType=VARCHAR},
+      </if>
+      <if test="timeEntrustmentSellout != null">
+        #{timeEntrustmentSellout,jdbcType=VARCHAR},
+      </if>
+      <if test="bondYield != null">
+        #{bondYield,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherMonitor != null">
+        #{whetherMonitor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xue.entity.model.SqfSharesExample" resultType="java.lang.Long">
+    select count(*) from sqf_shares
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sqf_shares
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.securitiesName != null">
+        securities_name = #{record.securitiesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securitiesCode != null">
+        securities_code = #{record.securitiesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delegateStatus != null">
+        delegate_status = #{record.delegateStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delegationCategory != null">
+        delegation_category = #{record.delegationCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entrustedPricePurchase != null">
+        entrusted_price_purchase = #{record.entrustedPricePurchase,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entrustedPriceSellout != null">
+        entrusted_price_sellout = #{record.entrustedPriceSellout,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entrustedQuantityPurchase != null">
+        entrusted_quantity_purchase = #{record.entrustedQuantityPurchase,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entrustedQuantitySellout != null">
+        entrusted_quantity_sellout = #{record.entrustedQuantitySellout,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateEntrustmentPurchase != null">
+        date_entrustment_purchase = #{record.dateEntrustmentPurchase,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateEntrustmentSellout != null">
+        date_entrustment_sellout = #{record.dateEntrustmentSellout,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timeEntrustmentPurchase != null">
+        time_entrustment_purchase = #{record.timeEntrustmentPurchase,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timeEntrustmentSellout != null">
+        time_entrustment_sellout = #{record.timeEntrustmentSellout,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bondYield != null">
+        bond_yield = #{record.bondYield,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whetherMonitor != null">
+        whether_monitor = #{record.whetherMonitor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sqf_shares
+    set id = #{record.id,jdbcType=INTEGER},
+      securities_name = #{record.securitiesName,jdbcType=VARCHAR},
+      securities_code = #{record.securitiesCode,jdbcType=VARCHAR},
+      delegate_status = #{record.delegateStatus,jdbcType=VARCHAR},
+      delegation_category = #{record.delegationCategory,jdbcType=VARCHAR},
+      entrusted_price_purchase = #{record.entrustedPricePurchase,jdbcType=VARCHAR},
+      entrusted_price_sellout = #{record.entrustedPriceSellout,jdbcType=VARCHAR},
+      entrusted_quantity_purchase = #{record.entrustedQuantityPurchase,jdbcType=VARCHAR},
+      entrusted_quantity_sellout = #{record.entrustedQuantitySellout,jdbcType=VARCHAR},
+      date_entrustment_purchase = #{record.dateEntrustmentPurchase,jdbcType=VARCHAR},
+      date_entrustment_sellout = #{record.dateEntrustmentSellout,jdbcType=VARCHAR},
+      time_entrustment_purchase = #{record.timeEntrustmentPurchase,jdbcType=VARCHAR},
+      time_entrustment_sellout = #{record.timeEntrustmentSellout,jdbcType=VARCHAR},
+      bond_yield = #{record.bondYield,jdbcType=VARCHAR},
+      whether_monitor = #{record.whetherMonitor,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xue.entity.model.SqfShares">
+    update sqf_shares
+    <set>
+      <if test="securitiesName != null">
+        securities_name = #{securitiesName,jdbcType=VARCHAR},
+      </if>
+      <if test="securitiesCode != null">
+        securities_code = #{securitiesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delegateStatus != null">
+        delegate_status = #{delegateStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="delegationCategory != null">
+        delegation_category = #{delegationCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustedPricePurchase != null">
+        entrusted_price_purchase = #{entrustedPricePurchase,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustedPriceSellout != null">
+        entrusted_price_sellout = #{entrustedPriceSellout,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustedQuantityPurchase != null">
+        entrusted_quantity_purchase = #{entrustedQuantityPurchase,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustedQuantitySellout != null">
+        entrusted_quantity_sellout = #{entrustedQuantitySellout,jdbcType=VARCHAR},
+      </if>
+      <if test="dateEntrustmentPurchase != null">
+        date_entrustment_purchase = #{dateEntrustmentPurchase,jdbcType=VARCHAR},
+      </if>
+      <if test="dateEntrustmentSellout != null">
+        date_entrustment_sellout = #{dateEntrustmentSellout,jdbcType=VARCHAR},
+      </if>
+      <if test="timeEntrustmentPurchase != null">
+        time_entrustment_purchase = #{timeEntrustmentPurchase,jdbcType=VARCHAR},
+      </if>
+      <if test="timeEntrustmentSellout != null">
+        time_entrustment_sellout = #{timeEntrustmentSellout,jdbcType=VARCHAR},
+      </if>
+      <if test="bondYield != null">
+        bond_yield = #{bondYield,jdbcType=VARCHAR},
+      </if>
+      <if test="whetherMonitor != null">
+        whether_monitor = #{whetherMonitor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xue.entity.model.SqfShares">
+    update sqf_shares
+    set securities_name = #{securitiesName,jdbcType=VARCHAR},
+      securities_code = #{securitiesCode,jdbcType=VARCHAR},
+      delegate_status = #{delegateStatus,jdbcType=VARCHAR},
+      delegation_category = #{delegationCategory,jdbcType=VARCHAR},
+      entrusted_price_purchase = #{entrustedPricePurchase,jdbcType=VARCHAR},
+      entrusted_price_sellout = #{entrustedPriceSellout,jdbcType=VARCHAR},
+      entrusted_quantity_purchase = #{entrustedQuantityPurchase,jdbcType=VARCHAR},
+      entrusted_quantity_sellout = #{entrustedQuantitySellout,jdbcType=VARCHAR},
+      date_entrustment_purchase = #{dateEntrustmentPurchase,jdbcType=VARCHAR},
+      date_entrustment_sellout = #{dateEntrustmentSellout,jdbcType=VARCHAR},
+      time_entrustment_purchase = #{timeEntrustmentPurchase,jdbcType=VARCHAR},
+      time_entrustment_sellout = #{timeEntrustmentSellout,jdbcType=VARCHAR},
+      bond_yield = #{bondYield,jdbcType=VARCHAR},
+      whether_monitor = #{whetherMonitor,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
