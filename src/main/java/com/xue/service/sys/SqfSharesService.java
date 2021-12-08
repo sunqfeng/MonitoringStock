@@ -9,4 +9,6 @@ public interface SqfSharesService {
 
 	SqfShares selall_by_securities_code_whether_monitor(String securities_code,String whether_monitor );
 
+	int insert(SqfShares record);
+
 }

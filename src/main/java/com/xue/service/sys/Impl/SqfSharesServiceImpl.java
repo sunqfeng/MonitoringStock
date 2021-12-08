@@ -25,4 +25,10 @@ public class SqfSharesServiceImpl implements SqfSharesService {
 		return dao.selall_by_securities_code_whether_monitor(securities_code, whether_monitor);
 	}
 
+	@Override
+	public int insert(SqfShares record) {
+		// TODO Auto-generated method stub
+		return dao.insert(record);
+	}
+
 }
