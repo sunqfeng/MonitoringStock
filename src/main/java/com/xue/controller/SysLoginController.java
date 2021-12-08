@@ -20,9 +20,6 @@ import com.xue.service.sys.UserService;
 @RequestMapping("/sys/acct")
 public class SysLoginController {
 	
-	/*
-	 * 
-	 */
 
 	@Autowired
 	private UserService userService;
