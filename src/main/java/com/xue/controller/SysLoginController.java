@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
+import org.springframework.data.annotation.Reference;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,7 @@ import com.xue.entity.model.User;
 import com.xue.repository.dao.SqfSharesMapper;
 import com.xue.service.sys.PictureDeal;
 import com.xue.service.sys.SqfSharesService;
+import com.xue.service.sys.TimedTask;
 import com.xue.service.sys.UserService;
 
 @RestController
@@ -27,12 +29,17 @@ public class SysLoginController {
 	@Autowired
 	private SqfSharesService sqfshaService;
 
+	@Reference
+	private TimedTask tiemTask;
+
 	SqfShares sqfShares = new SqfShares();
 
 	@RequestMapping("/test")
 	public void test()
 	{
-		sqfShares = sqfshaService.selall_by_securities_code_whether_monitor("300657", "1");
+
+		tiemTask.TimedTaskSqfShares();
+//		sqfShares = sqfshaService.selall_by_securities_code_whether_monitor("300657", "1");
 		System.out.println("sqf=="+sqfShares.getSecuritiesCode());
 		System.out.println("hello,world");
 		System.out.println("hello,world");

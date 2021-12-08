@@ -2,12 +2,13 @@ package com.xue.service.sys.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.xue.entity.model.Cron;
 import com.xue.repository.dao.CronMapper;
 import com.xue.service.sys.CronService;
 
-@Component
+@Service
 public class CronServiceImpl implements CronService {
 
 	@Autowired
