@@ -39,4 +39,21 @@ public class StringManipulation {
 		}
 	}
 
+	/*
+	 * 匹配一个字符串中的数字(金额数字)
+	 * 2021年12月8日13:39:59
+	 * 
+	 */
+
+	public static String MatchingAmount(String obj) {
+		String regxp = "((-)?(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){1,2})?)";
+		Pattern p = Pattern.compile(regxp);
+		Matcher m = p.matcher(obj);
+		if (m.find()) {
+			return m.group(1);
+		}
+		else
+			return null;
+	}
+
 }
