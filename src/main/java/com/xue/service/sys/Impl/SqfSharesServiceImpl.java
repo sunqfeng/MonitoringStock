@@ -1,5 +1,7 @@
 package com.xue.service.sys.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,13 @@ public class SqfSharesServiceImpl implements SqfSharesService {
 	public int insert(SqfShares record) {
 		// TODO Auto-generated method stub
 		return dao.insert(record);
+	}
+
+	@Override
+	public List<SqfShares> selall_by_whether_monitor(String whether_monitor) {
+		// TODO Auto-generated method stub
+
+		return dao.selall_by_whether_monitor(whether_monitor);
 	}
 
 }

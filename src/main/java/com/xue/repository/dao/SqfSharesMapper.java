@@ -2,6 +2,9 @@ package com.xue.repository.dao;
 
 import com.xue.entity.model.SqfShares;
 import com.xue.entity.model.SqfSharesExample;
+
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface SqfSharesMapper {
@@ -24,4 +27,6 @@ public interface SqfSharesMapper {
     int updateByPrimaryKey(SqfShares record);
 
     SqfShares selall_by_securities_code_whether_monitor(@Param("securities_code") String securities_code,@Param("whether_monitor") String whether_monitor );
+
+    List<SqfShares> selall_by_whether_monitor( @Param("whether_monitor") String whether_monitor );
 }

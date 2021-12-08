@@ -1,5 +1,7 @@
 package com.xue.service.sys.Impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,12 @@ public class TimedTaskImpl implements TimedTask {
 		// TODO Auto-generated method stub
 		System.out.println("TimedTaskSqfShares>>>>>>");
 
-		sqfShares = sqfSharesService.selall_by_securities_code_whether_monitor("300657", "1");
+		List<SqfShares> listSqfShares = sqfSharesService.selall_by_whether_monitor("1");
+
+		for ( SqfShares sqfShares:listSqfShares  )
+		{
+			log.debug("for list sqfShares==="+sqfShares.getSecuritiesName());
+		}
 
 		log.debug("wooooooo=="+sqfShares.getSecuritiesName());
 
