@@ -57,7 +57,7 @@
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-		 	<scope>provided</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -76,6 +76,17 @@
 			<artifactId>gson</artifactId>
 			<version>1.7.2</version>
 		</dependency>
+
+		<!-- 2021年12月8日10:28:30 begin -->
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+		<!-- 2021年12月8日10:28:30 end -->
+
 	</dependencies>
 
 	<build>
@@ -98,13 +109,13 @@
 					</dependency>
 				</dependencies>
 
-			  <configuration>
-            <!-- 输出详细信息 -->
-            <verbose>true</verbose>
-            <!-- 覆盖生成文件 generator插件设置成自动覆盖  -->
-            <overwrite>true</overwrite>
-            <!-- 定义配置文件 -->
-        </configuration>
+				<configuration>
+					<!-- 输出详细信息 -->
+					<verbose>true</verbose>
+					<!-- 覆盖生成文件 generator插件设置成自动覆盖 -->
+					<overwrite>true</overwrite>
+					<!-- 定义配置文件 -->
+				</configuration>
 
 			</plugin>
 
