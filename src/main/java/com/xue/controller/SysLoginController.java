@@ -23,14 +23,25 @@ import com.xue.service.sys.UserService;
 public class SysLoginController {
 	
 
+	public static SysLoginController sysLoginController;
+
 	@Autowired
 	private UserService userService;
 
 	@Autowired
 	private SqfSharesService sqfshaService;
 
-	@Reference
+	@Autowired
 	private TimedTask tiemTask;
+
+	@PostConstruct 
+    public void init() {  
+		sysLoginController = this;  
+		sysLoginController.tiemTask = this.tiemTask ;
+        // 初使化时将已静态化的otherService实例化
+    }  
+
+
 
 	SqfShares sqfShares = new SqfShares();
 
