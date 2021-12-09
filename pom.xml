@@ -87,6 +87,21 @@
 
 		<!-- 2021年12月8日10:28:30 end -->
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+
+
+		<!-- mail begin -->
+
+
+
+		<!-- mail end -->
+
+
+
 	</dependencies>
 
 	<build>
