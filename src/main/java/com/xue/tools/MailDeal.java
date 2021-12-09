@@ -19,6 +19,7 @@ public class MailDeal {
         mailSender.setHost("smtp.qq.com");
         mailSender.setUsername("1049245996@qq.com");
         mailSender.setPassword("kklmesjpdslsbdfg");
+        mailSender.setPort(587);
         return mailSender;
     }
     //一个简单的邮件,只有text信息
@@ -73,11 +74,11 @@ public class MailDeal {
         helper.setFrom(Objects.requireNonNull(javaMailSender.getUsername())); //谁发送的
         javaMailSender.send(mimeMessage);
     }
-    public static void main(String[] args) {
-		
-    	MailDeal e = new MailDeal();
-    	e.SendSimpleEmail("wocao","who are you","1049245996@qq.com");
+//    public static void main(String[] args) {
+//		
+//    	MailDeal e = new MailDeal();
+//    	e.SendSimpleEmail("wocao","who are you","1049245996@qq.com");
 //    	e.SendSimpleEmail("wocao","who are you","caoyu@sunline.cn");
-
-	}
+//
+//	}
 }

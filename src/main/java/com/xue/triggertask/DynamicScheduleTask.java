@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -25,6 +27,7 @@ import com.xue.service.sys.Impl.TimedTaskImpl;
 @EnableScheduling   // 2.开启定时任务
 public class DynamicScheduleTask implements SchedulingConfigurer {
 
+	private static final Logger log = LoggerFactory.getLogger(DynamicScheduleTask.class);
 
 	public static DynamicScheduleTask dynamicScheduleTask;
 

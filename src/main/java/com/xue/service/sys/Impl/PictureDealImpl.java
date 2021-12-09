@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.xue.entity.model.SqfShares;
+import com.xue.entity.model.StockInfor;
 import com.xue.service.sys.PictureDeal;
 import com.xue.service.sys.SqfSharesService;
 import com.xue.tools.GeneralBasic;
@@ -54,6 +55,8 @@ public class PictureDealImpl implements PictureDeal {
 	@Override
 	public void ImageProcessingPortal(String obj) {
 		// TODO Auto-generated method stub
+		StockInfor stockInfor = new StockInfor();
+
 		log.debug("ImageProcessingPortal>>>>>>>>>>>>>>>>>>>>>>>>>begin");
 		SqfShares sqfShares = new SqfShares();
 
@@ -70,8 +73,8 @@ public class PictureDealImpl implements PictureDeal {
 			sqfShares.setSecuritiesCode(zjdm);
 
 			//获取股票信息
-			String[] gpxx =  GetStockInfo.GetstockInof(zjdm).split("\\,");
-			sqfShares.setSecuritiesName(gpxx[0]); //股票名称
+			stockInfor =  GetStockInfo.GetstockInof(zjdm);
+			sqfShares.setSecuritiesName( stockInfor.getStockName() ); //股票名称
 
 			String[] wtzt  = StringManipulation.StringMatching(objstring, "委托状态").split("\"");
 			sqfShares.setDelegateStatus(wtzt[3]);
