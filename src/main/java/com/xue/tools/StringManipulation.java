@@ -3,6 +3,11 @@ package com.xue.tools;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.xue.baidu.tool.BadiDuFanYi;
+
 /**
  * 
  * @author 86187
@@ -13,7 +18,14 @@ import java.util.regex.Pattern;
 
 public class StringManipulation {
 
+	public static final Logger log = LoggerFactory.getLogger(StringManipulation.class);
 
+	public static String StrinSum = "";
+	/*
+	 * 
+	 * 查询股票信息
+	 * 
+	 */
 	public static String StringMatching(String tmp,String matcherobj)
 	{
 
@@ -55,5 +67,44 @@ public class StringManipulation {
 		else
 			return null;
 	}
+
+
+	/**
+	 * 
+	 * @param tmp
+	 * @return
+	 * 将前端上送的图片翻译成汉字
+	 */
+	public static String StringMatchingBaiduApi(String tmp )
+	{
+		if ( tmp == null ) 
+		{
+			return null;
+		}
+
+		String[] obj = tmp.substring(tmp.indexOf("{")+1,tmp.indexOf("}")).split("\"");
+		System.out.println("ojb===="+obj[3]);
+		log.debug(obj[3]);
+
+		try {
+			//将英文翻译成中文
+//			StrinSum = StrinSum+BadiDuFanYi.BaiDuFanYiYinToHan(obj[3])+",";
+			StrinSum = StrinSum+obj[3];
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			return StringMatchingBaiduApi ( tmp.substring(tmp.indexOf("}")+2 ) );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.debug( StrinSum );
+			return  BadiDuFanYi.BaiDuFanYiYinToHan(  StrinSum );
+		}
+
+	}
+
+
 
 }

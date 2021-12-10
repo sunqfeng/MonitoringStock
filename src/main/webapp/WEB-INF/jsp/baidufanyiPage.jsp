@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-hello,world
+ <form action="baidufanyi" method="post" enctype="multipart/form-data">
+        选择图片:<input type="file" name="file" accept="image/*" /> <br>
+        <input type="submit" value="立刻上传">
+    </form>
 
 </body>
 </html>

@@ -93,6 +93,13 @@
     select * from sqf_shares where securities_code=#{securities_code} and whether_monitor=#{whether_monitor} 
   </select>
 
+ <select id="selall_by_securities_code_entrusted_price_purchase_entrusted_quantity_purchase "  resultMap="BaseResultMap">
+    select * from sqf_shares where securities_code=#{securities_code} 
+    and entrusted_price_purchase=#{entrusted_price_purchase} 
+    and entrusted_quantity_purchase=#{entrusted_quantity_purchase}
+  </select>
+
+
   <select id="selall_by_whether_monitor"  resultMap="BaseResultMap">
     select * from sqf_shares where  whether_monitor=#{whether_monitor} 
   </select>

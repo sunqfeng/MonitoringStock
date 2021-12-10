@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -15,6 +16,8 @@ import com.google.gson.Gson;
 //import Org.Tools.HttpUtil;
 
 public class GeneralBasic {
+
+	public static Logger log = Logger.getLogger(GeneralBasic.class);
 
 	/**
 	 * 重要提示代码中所需工具类 FileUtil,Base64Util,HttpUtil,GsonUtils请从

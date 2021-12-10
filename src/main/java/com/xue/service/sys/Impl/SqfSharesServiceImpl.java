@@ -40,4 +40,10 @@ public class SqfSharesServiceImpl implements SqfSharesService {
 		return dao.selall_by_whether_monitor(whether_monitor);
 	}
 
+	@Override
+	public int updateByPrimaryKeySelective(SqfShares record) {
+		// TODO Auto-generated method stub
+		return dao.updateByPrimaryKeySelective(record);
+	}
+
 }

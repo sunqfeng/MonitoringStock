@@ -14,8 +14,9 @@ import com.alibaba.fastjson.JSONArray;
 public class BadiDuFanYi {
 
 	
-	private static final Logger log = LoggerFactory.getLogger(BadiDuFanYi.class);
+	public static final Logger log = LoggerFactory.getLogger(BadiDuFanYi.class);
 
+	
 	// 在平台申请的APP_ID 详见
 	// http://api.fanyi.baidu.com/api/trans/product/desktop?req=developer
 	private static final String APP_ID = "20211209001023782";

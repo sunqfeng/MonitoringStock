@@ -28,29 +28,13 @@ public class PictureDealImpl implements PictureDeal {
 		log.info("IdentifyPicture>>>>>>>>>>>>>>>>>>>begin");
 		log.debug("pwd== "+pwd);
 		ImageProcessingPortal(pwd);
-//		File picturefilepwd = new File(pwd);
-//		File[] tempList = picturefilepwd.listFiles();
-		// 解析图片内容
-//		for (int i = 0; i < tempList.length; i++) {
-//			if (tempList[i].isFile()) {
-//				System.out.println("========================================================");
-//				GeneralBasic.generalBasic(tempList[i].toString());
-//				System.out.println("========================================================");
-//			}
-//			if (tempList[i].isDirectory()) {
-//			}
-//		}
-
-//		System.out.println(" GeneralBasic.generalBasic ====" + GeneralBasic.generalBasic( pwd ) );
-		
-
 
 		log.info("IdentifyPicture<<<<<<<<<<<<<<<<<end");
 
 	}
 
 	/*
-	 * 图片处理入口,将识别出来的图片文字全部传入该函数中
+	 * 股票图片处理入口,将识别出来的图片文字全部传入该函数中
 	 */
 	@Override
 	public void ImageProcessingPortal(String obj) {
@@ -90,6 +74,10 @@ public class PictureDealImpl implements PictureDeal {
 				String[] cjslarry = StringManipulation.StringMatching(objstring, "成交数量").split("\"");
 				String cjsl = StringManipulation.MatchingAmount( cjslarry[3] );
 				sqfShares.setEntrustedQuantityPurchase(cjsl);
+
+				sqfShares.setWhetherMonitor("1");
+
+				sqfSharesService.insert(sqfShares);
 			}
 			else //卖出
 			{
@@ -102,11 +90,12 @@ public class PictureDealImpl implements PictureDeal {
 				String[] cjslarry = StringManipulation.StringMatching(objstring, "成交数量").split("\"");
 				String cjsl = StringManipulation.MatchingAmount( cjslarry[3] );
 				sqfShares.setEntrustedQuantitySellout(cjsl);
+
+				sqfShares.setWhetherMonitor("0");
+
+				sqfSharesService.updateByPrimaryKeySelective( sqfShares  );
+
 			}
-
-			sqfShares.setWhetherMonitor("1");
-
-			sqfSharesService.insert(sqfShares);
 			
 		}
 
@@ -128,6 +117,12 @@ public class PictureDealImpl implements PictureDeal {
 		System.out.println(sss[3]+"|"+tmp);
 
 		
+	}
+
+	@Override
+	public String ImageProcessingBaidu(String obj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

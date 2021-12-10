@@ -8,7 +8,7 @@
 </head>
 <body>
 
-hello,world
-
+<!-- <img src="/uploaded/${fileName}"> -->
+ <p th:text="结果">${sqf}</p>
 </body>
 </html>

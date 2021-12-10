@@ -17,4 +17,6 @@ public interface SqfSharesService {
 
 	List<SqfShares> selall_by_whether_monitor( @Param("whether_monitor") String whether_monitor );
 
+	int updateByPrimaryKeySelective(SqfShares record);
+
 }
