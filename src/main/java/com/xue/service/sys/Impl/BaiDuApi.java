@@ -33,6 +33,7 @@ public class BaiDuApi implements PictureDeal {
 	public String ImageProcessingBaidu(String obj) {
 		// TODO Auto-generated method stub
 
+		StringManipulation stringManipulation = new StringManipulation();
 		log.debug("ImageProcessingBaidu>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>begin");
 		log.debug("obj==="+obj);
 		System.out.println("obj==="+obj);
@@ -41,7 +42,7 @@ public class BaiDuApi implements PictureDeal {
 		System.out.println("objstring"+objstring);
 		log.debug("objstring==="+objstring );
 
-		String fyczw =StringManipulation.StringMatchingBaiduApi(objstring);
+		String fyczw =stringManipulation.StringMatchingBaiduApi(objstring);
 		log.debug("zjdmarry==="+fyczw );
 		
 		log.debug("ImageProcessingBaidu<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<end");

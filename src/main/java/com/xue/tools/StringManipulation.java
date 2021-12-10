@@ -20,7 +20,10 @@ public class StringManipulation {
 
 	public static final Logger log = LoggerFactory.getLogger(StringManipulation.class);
 
-	public static String StrinSum = "";
+
+//	 StringBuilder StrinSum = new StringBuilder();
+		String StrinSum = "";
+
 	/*
 	 * 
 	 * 查询股票信息
@@ -75,7 +78,7 @@ public class StringManipulation {
 	 * @return
 	 * 将前端上送的图片翻译成汉字
 	 */
-	public static String StringMatchingBaiduApi(String tmp )
+	public String StringMatchingBaiduApi(String tmp )
 	{
 		if ( tmp == null ) 
 		{
@@ -90,6 +93,7 @@ public class StringManipulation {
 			//将英文翻译成中文
 //			StrinSum = StrinSum+BadiDuFanYi.BaiDuFanYiYinToHan(obj[3])+",";
 			StrinSum = StrinSum+obj[3];
+//			StrinSum.append(obj[3]);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -102,6 +106,17 @@ public class StringManipulation {
 			log.debug( StrinSum );
 			return  BadiDuFanYi.BaiDuFanYiYinToHan(  StrinSum );
 		}
+
+	}
+
+
+
+	public static void main(String[] args) {
+		
+		StringManipulation stringManipulation = new StringManipulation();
+		String obj = "{\"words\":\"Call for Papers: Irritable bowel syr\"},{\"words\":\"arome\"},{\"words\":\"Call for Papers: Targeted therapies for cancel\"},{\"words\":\"We are pleased to announce the launch of our new article\"},{\"words\":\"BMC Medicine and bmc cancer are welcoming submissions\"},{\"words\":\"collection seeking submissions on all novel, impact\"},{\"words\":\"to a new joint collection on cancer targeted therapies We\"},{\"words\":\"advances of irritable bowel syndrome, including disease\"},{\"words\":\"are seeking manuscripts on all aspects of molecular targeted\"},{\"words\":\"burden, etiology, pathophysiology, and therapies.\"},{\"words\":\"etaples\"},{\"words\":\"Iding novel therapies, treatment resistance,\"},{\"words\":\"our Privacy\"},{\"words\":\"We use cookies to make sure that our website works properly, as well as some optional cookies to personalise content and advertising, provide social media features and analyse\"},{\"words\":\"how people use our site. By accepting some or all optional cookies you give consent to the processing of your personal data, including transfer to third parties, some in countries\"},{\"words\":\"tside of the European Economic Area that do not offer the same data protection standards as the\"},{\"words\":\"clicking on Manage Settings, where you can also find more information about how your personal data is processed. Further information can be found in our privacy_policy.\"},{\"words\":\"Ac\"}";
+		String tmp = stringManipulation.StringMatchingBaiduApi(obj);
+		System.out.println("tmp===="+tmp);
 
 	}
 
