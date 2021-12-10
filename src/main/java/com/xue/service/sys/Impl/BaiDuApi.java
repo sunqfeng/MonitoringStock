@@ -38,11 +38,12 @@ public class BaiDuApi implements PictureDeal {
 		log.debug("obj==="+obj);
 		System.out.println("obj==="+obj);
 
-		String objstring = GeneralBasic.generalBasic( obj );
-		System.out.println("objstring"+objstring);
-		log.debug("objstring==="+objstring );
+		//obj.substring(obj.indexOf("[")+1, obj.lastIndexOf("]") ) ;
+		String objstring = GeneralBasic.generalBasic( obj ).substring( GeneralBasic.generalBasic( obj ).indexOf("[")+1  , GeneralBasic.generalBasic( obj ).indexOf("]") );
+		System.out.println("objstring"+objstring );
+		log.debug("objstring==="+objstring  );
 
-		String fyczw =stringManipulation.StringMatchingBaiduApi(objstring);
+		String fyczw =stringManipulation.StringMatchingBaiduApi( objstring );
 		log.debug("zjdmarry==="+fyczw );
 		
 		log.debug("ImageProcessingBaidu<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<end");

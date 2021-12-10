@@ -3,8 +3,8 @@ package com.xue.tools;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+import org.apache.log4j.spi.LoggerFactory;
 
 import com.xue.baidu.tool.BadiDuFanYi;
 
@@ -18,7 +18,7 @@ import com.xue.baidu.tool.BadiDuFanYi;
 
 public class StringManipulation {
 
-	public static final Logger log = LoggerFactory.getLogger(StringManipulation.class);
+	public static final Logger log = Logger.getLogger( StringManipulation.class ) ;
 
 
 //	 StringBuilder StrinSum = new StringBuilder();
@@ -92,7 +92,7 @@ public class StringManipulation {
 		try {
 			//将英文翻译成中文
 //			StrinSum = StrinSum+BadiDuFanYi.BaiDuFanYiYinToHan(obj[3])+",";
-			StrinSum = StrinSum+obj[3];
+			StrinSum = StrinSum+obj[3] + " ";
 //			StrinSum.append(obj[3]);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block

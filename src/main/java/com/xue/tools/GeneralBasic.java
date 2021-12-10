@@ -46,14 +46,8 @@ public class GeneralBasic {
 			String accessToken = token;
 
 			String result = HttpUtil.post(url, accessToken, param);
+			log.debug("result==="+result);
 			System.out.println("result=="+ result );
-//			String obj = result.substring(result.indexOf("[") + 1, result.indexOf("]"));
-//			System.out.println("obj===" + obj);
-//			String[] arry = obj.split("\\},");
-//			for (int i = 0; i < arry.length; i++) {
-//				String[] arry1 = arry[i].split("\\:");
-//				System.out.println(arry1[1]);
-//			}
 
 			return result;
 		} catch (Exception e) {
