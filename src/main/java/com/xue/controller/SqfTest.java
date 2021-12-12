@@ -11,14 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class SqfTest {
 
 
-	@RequestMapping(value="/sqf", method = RequestMethod.GET)
-	 public String Test( Map <String, Object> map )
-	 {
-		 
-		 map.put("sqf", "wocao1111");
-
-		 return "tpfyhy";
-	 }
-
+	@RequestMapping(value = "/sqf")
+	public String uploadPage() {
+		return "vuetest"; // 过度跳转页
+//		return "uploadPage"; // 过度跳转页
+	}
 }
 
