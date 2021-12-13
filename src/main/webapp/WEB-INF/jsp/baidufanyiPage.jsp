@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>将图片文字翻译成英文</title>
 </head>
 
 <body>
