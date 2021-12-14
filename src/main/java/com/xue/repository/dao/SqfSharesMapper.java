@@ -28,6 +28,11 @@ public interface SqfSharesMapper {
 
     SqfShares selall_by_securities_code_whether_monitor(@Param("securities_code") String securities_code,@Param("whether_monitor") String whether_monitor );
 
+    /**
+     * 查询所有监控股票的记录
+     * @param whether_monitor
+     * @return
+     */
     List<SqfShares> selall_by_whether_monitor( @Param("whether_monitor") String whether_monitor );
 
     SqfShares selall_by_securities_code_entrusted_price_purchase_entrusted_quantity_purchase( @Param("securities_code") String securities_code,@Param("entrusted_price_purchase") String entrusted_price_purchase,@Param("entrusted_quantity_purchase") String entrusted_quantity_purchase  );
