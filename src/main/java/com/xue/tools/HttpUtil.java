@@ -8,7 +8,11 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 public class HttpUtil {
+
+	public static Logger log = Logger.getLogger(HttpUtil.class);
 
 	public static String post(String requestUrl, String accessToken, String params) throws Exception {
 		String contentType = "application/x-www-form-urlencoded";
@@ -39,7 +43,7 @@ public class HttpUtil {
 		// 设置通用的请求属性
 		connection.setRequestProperty("Content-Type", contentType);
 		connection.setRequestProperty("Connection", "Keep-Alive");
-		connection.setUseCaches(false);
+		connection.setUseCaches( false );
 		connection.setDoOutput(true);
 		connection.setDoInput(true);
 
@@ -56,6 +60,7 @@ public class HttpUtil {
 		// 遍历所有的响应头字段
 		for (String key : headers.keySet()) {
 			System.err.println(key + "--->" + headers.get(key));
+			log.error("key + \"--->\" + headers.get(key)"+ key + "--->" + headers.get(key));
 		}
 		// 定义 BufferedReader输入流来读取URL的响应
 		BufferedReader in = null;
@@ -67,6 +72,7 @@ public class HttpUtil {
 		}
 		in.close();
 		System.err.println("result:" + result);
+		log.debug( "result==="+result );
 		return result;
 	}
 

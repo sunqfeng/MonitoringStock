@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.xue.entity.model.SqfShares;
 import com.xue.entity.model.StockInfor;
+import com.xue.repository.dao.SqfSharesMapper;
 import com.xue.service.sys.PictureDeal;
 import com.xue.service.sys.SqfSharesService;
 import com.xue.tools.GeneralBasic;
@@ -21,6 +22,10 @@ public class PictureDealImpl implements PictureDeal {
 
 	@Autowired
 	private SqfSharesService sqfSharesService;
+
+	@Autowired
+	private SqfSharesMapper sqfSharesMapper;
+
 
 	@Override
 	public void IdentifyPicture(String pwd) {
@@ -81,7 +86,7 @@ public class PictureDealImpl implements PictureDeal {
 			}
 			else //卖出
 			{
-				sqfShares.setDelegationCategory("1");
+
 
 				String[] wtjgarry = StringManipulation.StringMatching(objstring, "委托价格").split("\"");
 				String wtjg = StringManipulation.MatchingAmount( wtjgarry[3] );
