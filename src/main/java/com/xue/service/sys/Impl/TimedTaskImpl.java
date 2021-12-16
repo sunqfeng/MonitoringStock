@@ -1,6 +1,7 @@
 package com.xue.service.sys.Impl;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,7 @@ import com.xue.entity.model.SqfShares;
 import com.xue.entity.model.StockInfor;
 import com.xue.service.sys.SqfSharesService;
 import com.xue.service.sys.TimedTask;
+import com.xue.tools.DateClass;
 import com.xue.tools.GetStockInfo;
 import com.xue.tools.MailDeal;
 
@@ -69,12 +71,24 @@ public class TimedTaskImpl implements TimedTask {
 				SimpleDateFormat formatter= new SimpleDateFormat("yyyyMMdd");
 				Date enddate = new Date(System.currentTimeMillis());
 
-				Date begindate=new Date("sqfShares.getDateEntrustmentPurchase()");
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+				Date begindate = null;
+				try {
+					begindate = sdf.parse( sqfShares.getDateEntrustmentPurchase() );
+				} catch (ParseException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 
 				log.debug("begindate======"+begindate);
 				log.debug("enddate======"+ enddate );
 
-				difdate =  ( begindate.getTime()-enddate.getTime())/86400000;
+				try {
+					difdate =  DateClass.daysBetween(begindate, enddate);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 				log.debug("difdate====" +difdate );
 			}
