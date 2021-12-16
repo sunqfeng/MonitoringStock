@@ -1,13 +1,13 @@
 package com.xue.service.sys.Impl;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.xue.entity.model.SqfShares;
 import com.xue.entity.model.StockInfor;
@@ -19,8 +19,7 @@ import com.xue.tools.MailDeal;
 @Component
 public class TimedTaskImpl implements TimedTask {
 	
-	private static final Logger log = LoggerFactory.getLogger(TimedTaskImpl.class);
-
+	public static Logger log = Logger.getLogger(TimedTaskImpl.class);
 
 	@Autowired
 	private SqfSharesService sqfSharesService;
@@ -38,6 +37,7 @@ public class TimedTaskImpl implements TimedTask {
 		log.debug("TimedTaskSqfShares>>>>>>");
 
 		StockInfor stockInfor = new StockInfor();
+		long difdate = 0L;
 
 		List<SqfShares> listSqfShares = sqfSharesService.selall_by_whether_monitor("1");
 
@@ -61,9 +61,27 @@ public class TimedTaskImpl implements TimedTask {
 
 			BigDecimal Gpsy = Mrsl.multiply(Dqjg).subtract( Mrjg.multiply( Mrsl ) );
 
+			//持有天数
+			if ( sqfShares.getDateEntrustmentPurchase() != null )
+			{
+
+				//获取时间
+				SimpleDateFormat formatter= new SimpleDateFormat("yyyyMMdd");
+				Date enddate = new Date(System.currentTimeMillis());
+
+				Date begindate=new Date("sqfShares.getDateEntrustmentPurchase()");
+
+				log.debug("begindate======"+begindate);
+				log.debug("enddate======"+ enddate );
+
+				difdate =  ( begindate.getTime()-enddate.getTime())/86400000;
+
+				log.debug("difdate====" +difdate );
+			}
+
 //			String Gpsy = sqfShares.getEntrustedPricePurchase()*sqfShares.getEntrustedQuantityPurchase()-
 
-			StockMsg = "股票名称:"+sqfShares.getSecuritiesName()+" | "+"股票代码:"+sqfShares.getSecuritiesCode()+" | "+"买入价格:"+sqfShares.getEntrustedPricePurchase() + " | " + "当前价格:"+ stockInfor.getCurrentPrice() +" | "+"买入数量:"+sqfShares.getEntrustedQuantityPurchase()+" | "+"股票收益:"+Gpsy;
+			StockMsg = "股票名称:"+sqfShares.getSecuritiesName()+" | "+"股票代码:"+sqfShares.getSecuritiesCode()+" | "+"持有天数:"+difdate+" | "+"买入价格:"+sqfShares.getEntrustedPricePurchase() + " | " + "当前价格:"+ stockInfor.getCurrentPrice() +" | "+"买入数量:"+sqfShares.getEntrustedQuantityPurchase()+" | "+"股票收益:"+Gpsy;
 
 	    	e.SendSimpleEmail("股票信息",StockMsg,"1049245996@qq.com");
 

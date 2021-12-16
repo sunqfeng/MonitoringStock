@@ -1,6 +1,7 @@
 package com.xue.service.sys;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public interface PictureDeal {
@@ -17,5 +18,18 @@ public interface PictureDeal {
 	public void ImageProcessingPortal(String obj);
 
 	public String ImageProcessingBaidu(String obj);
+
+	/*
+	 * 将上传图片的处理函数进行封装
+	 */
+	public String ImageUploadProcessing(MultipartFile file );
+
+
+	/*
+	 * 
+	 * 百度文字识别，仅仅识别出来图片中文字
+	 */
+	public String BaiDuPhChaRe(String obj);
+
 
 }

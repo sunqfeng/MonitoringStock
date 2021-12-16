@@ -3,6 +3,7 @@ package com.xue.triggertask;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.xue.entity.model.SqfShares;
 import com.xue.repository.dao.SqfSharesMapper;
+import com.xue.service.sys.Impl.TimedTaskImpl;
 
 /*
  * springboot 定时器
@@ -21,6 +23,8 @@ import com.xue.repository.dao.SqfSharesMapper;
 @EnableScheduling   // 2.开启定时任务
 @Component
 public class SaticScheduleTask {
+
+	private Logger log = Logger.getLogger(SaticScheduleTask.class);
 
 /*
 秒（0~59） 例如0/5表示每5秒
@@ -34,22 +38,26 @@ public class SaticScheduleTask {
 	@Autowired
 	private SqfSharesMapper sqfshMapper;
 
+	@Autowired
+	private TimedTaskImpl timedTaskImpl;
+
 	SqfShares sqfShares = new SqfShares();
 
+//	TimedTaskImpl timedTaskImpl = new TimedTaskImpl();
+
+
 	//3.添加定时任务
-    @Scheduled(cron = "0/5 * * * * ?")
+    @Scheduled(cron = "0 */60 9,16 * * ?")
     //或直接指定时间间隔，例如：5秒
     //@Scheduled(fixedRate=5000)
     private void configureTasks() {
 
-    	List<SqfShares> listSqfShares = sqfshMapper.selall_by_whether_monitor("1");
+    	log.debug("configureTasks>>>>>>>>>>>>>>>>>>>>>begin");
 
-    	for ( SqfShares sqfShares :listSqfShares )
-    	{
-    		System.out.println(" sqfShares ====="+sqfShares.getSecuritiesName() );
-    	}
+    	timedTaskImpl.TimedTaskSqfShares();
 
-        System.err.println("执行静态定时任务时间: " + LocalDateTime.now()+"|"+sqfShares.getSecuritiesName());
+    	log.debug("configureTasks>>>>>>>>>>>>>>>>>>>>>end");
+
     }
 
 

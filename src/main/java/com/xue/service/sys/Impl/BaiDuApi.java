@@ -2,6 +2,7 @@ package com.xue.service.sys.Impl;
 
 
 import org.apache.log4j.Logger;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xue.service.sys.PictureDeal;
 import com.xue.tools.GeneralBasic;
@@ -59,6 +60,35 @@ public class BaiDuApi implements PictureDeal {
 		BaiDuApi baiDuApi = new BaiDuApi();
 		baiDuApi.ImageProcessingBaidu("D:\\java_picture\\微信图片_20211210154334.png");
 		
+	}
+
+	@Override
+	public String ImageUploadProcessing(MultipartFile file) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * 识别出来图片中的文字
+	 */
+
+	@Override
+	public String BaiDuPhChaRe(String obj) {
+		// TODO Auto-generated method stub
+		StringManipulation stringManipulation = new StringManipulation();
+
+		log.debug("BaiDuPhChaRe>>>>>>>>>>>>>>>>>>>>>>>>>begin");
+
+		String objstring = GeneralBasic.generalBasic( obj ).substring( GeneralBasic.generalBasic( obj ).indexOf("[")+1  , GeneralBasic.generalBasic( obj ).indexOf("]") );
+		log.debug("BaiDuPhChaRe======"+objstring);
+
+		String tmp = stringManipulation.StringPhotoCharRecon(objstring);
+
+		log.debug("tmp====="+tmp);
+
+		log.debug("BaiDuPhChaRe<<<<<<<<<<<<<<<<<<<<<<<<<end");
+
+		return tmp;
 	}
 
 }

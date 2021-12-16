@@ -6,8 +6,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import com.xue.entity.model.StockInfor;
 
@@ -32,7 +31,7 @@ import com.xue.entity.model.StockInfor;
 
 public class GetStockInfo {
 
-	private static final Logger log = LoggerFactory.getLogger(GetStockInfo.class);
+	private static Logger log = Logger.getLogger( GetStockInfo.class );
 
 	public static String getEncoding(String str) {
 		String encode;
@@ -124,28 +123,38 @@ public class GetStockInfo {
 
 	public static StockInfor GetstockInof(String code) {
 
+		log.debug("GetstockInof>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>begin");
+
 		StockInfor stockInfor = new StockInfor();
 
-		log.debug("code==" + code);
 		String obj = "";
 		String url = "http://hq.sinajs.cn/list=sz" + code;
 		try {
 			obj = getBufferedReaderByUrl(url);
+//			System.out.println("obj888888==="+obj);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (obj == null || obj.length() == 0) {
+		log.debug("obj0000====="+obj);
+		if (obj == null || obj.length() <= 10) {
 			url = "http://hq.sinajs.cn/list=sh" + code;
 			try {
 				obj = getBufferedReaderByUrl(url);
+//				System.out.println("obj111==="+obj);
+				log.debug( "obj==="+obj );
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 
+//		System.out.println("obj44444==="+obj);
+		log.debug("obj===="+obj);
+
 		String[] tmp = obj.split(",");
+
+		log.debug("tmp===="+tmp);
 
 		stockInfor.setStockName(tmp[0] );
 		stockInfor.setOpeningPrice( tmp[1] );
@@ -156,13 +165,15 @@ public class GetStockInfo {
 
 		System.out.println("obj===" + obj);
 
+		log.debug("GetstockInof<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<end");
+
 		return stockInfor;
 	}
 
 	public static void main(String[] args) throws IOException {
 		StockInfor stockInfor = new StockInfor();
 
-		stockInfor = GetstockInof("300348");
+		stockInfor = GetstockInof("600268");
 	}
 
 }

@@ -110,6 +110,44 @@ public class StringManipulation {
 	}
 
 
+	/**
+	 * 
+	 * @param tmp
+	 * @return
+	 * 将前端上送图片的汉字识别出来(不翻译)
+	 */
+	public String StringPhotoCharRecon(String tmp )
+	{
+		if ( tmp == null ) 
+		{
+			return null;
+		}
+
+		String[] obj = tmp.substring(tmp.indexOf("{")+1,tmp.indexOf("}")).split("\"");
+		System.out.println("ojb===="+obj[3]);
+		log.debug(obj[3]);
+
+		try {
+			StrinSum = StrinSum+obj[3] + " ";
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			log.error(e1);
+		}
+
+		try {
+			return StringPhotoCharRecon ( tmp.substring(tmp.indexOf("}")+2 ) );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.debug( StrinSum );
+			return StrinSum;
+		}
+
+	}
+
+
+
+
 
 	public static void main(String[] args) {
 		

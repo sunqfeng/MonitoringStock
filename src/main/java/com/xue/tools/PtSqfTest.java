@@ -24,11 +24,18 @@ public class PtSqfTest {
 
 		sqfShares = sqfSharesMapper.selall_by_securities_code_entrusted_price_purchase_entrusted_quantity_purchase("300348","19.8" , "100");
 
-		System.out.println("wocao======"+sqfShares.getSecuritiesName() );
+		System.out.println("wocao======"+sqfShares.getSecuritiesName()+sqfShares.getSecuritiesCode() );
 		log.debug("sqfshare==="+sqfShares.getSecuritiesName() );
 
 
 
+	}
+
+	public static void main(String[] args) {
+		
+		PtSqfTest sqf = new PtSqfTest();
+		sqf.sqftest();
+		
 	}
 
 

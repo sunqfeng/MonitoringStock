@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.xue.service.sys.PictureDeal;
 import com.xue.service.sys.Impl.BaiDuApi;
+import com.xue.service.sys.Impl.PictureDealImpl;
 
 /*
  * @au sqf
@@ -34,11 +35,20 @@ public class UploadImgController {
 	@Autowired
 	private PictureDeal pictureDeal;
 
+	@Autowired
+	private PictureDealImpl pictureDealImpl;
+
 	BaiDuApi baiDuApi = new BaiDuApi(); 
 
+//	PictureDealImpl pictureDealImpl = new PictureDealImpl();
+
+
+	/*
+	 * 股票监控界面
+	 */
 	@RequestMapping(value = "/uploadPage")
 	public String uploadPage() {
-		return "uploadPage"; // 过度跳转页
+		return "uploadPage";
 	}
 
 	@RequestMapping(value = "/baiduapi")
@@ -46,7 +56,15 @@ public class UploadImgController {
 		return "baidufanyiPage"; // 过度跳转页
 	}
 
+	@RequestMapping(value = "/PictureCharacterReControl")
+	public String PictureCharacterReControl() {
+		return "PhotoCharacterRecognition"; // 过度跳转页
+	}
 
+
+	/*
+	 * 根据上传的股票信息截图 进行股票监控
+	 */
 	@PostMapping(value = "/upload")
 	public String uplaod(HttpServletRequest req, @RequestParam("file") MultipartFile file, Model m) {// 1. 接受上传的文件
 																										// @RequestParam("file")
@@ -75,7 +93,7 @@ public class UploadImgController {
 			file.transferTo(destFile);
 			// 6.把文件名放在model里，以便后续显示用
 			m.addAttribute("fileName", fileName);
-			pictureDeal.IdentifyPicture(destFileName);
+			pictureDealImpl.IdentifyPicture(destFileName);
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -129,4 +147,27 @@ public class UploadImgController {
 
 		return "tpfyhy";
 	}
+
+	/*
+	 * 图片文字识别，仅仅是识别出来文字
+	 */
+	@PostMapping(value = "/PictureCharacterRecognition")
+	public String PictureCharacterRecognition( HttpServletRequest req, @RequestParam("file") MultipartFile file, Model m, Map <String, Object> map  )
+	{
+		log.debug("PictureCharacterRecognition>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>begin");
+		String obj = pictureDealImpl.ImageUploadProcessing(file);
+
+		log.debug(obj);
+
+		String tmp = baiDuApi.BaiDuPhChaRe( obj );
+
+		log.debug("tmp======"+tmp);
+
+		log.debug("PictureCharacterRecognition<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<end");
+
+		map.put("sqf", tmp);
+		
+		return "tpfyhy";
+	}
+
 }

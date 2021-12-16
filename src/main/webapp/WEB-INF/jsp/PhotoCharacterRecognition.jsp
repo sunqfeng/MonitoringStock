@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>识别图片中文字</title>
 </head>
 <body>
- <form action="baidufanyi" method="post" enctype="multipart/form-data">
+ <form action="PictureCharacterRecognition" method="post" enctype="multipart/form-data">
         选择图片:<input type="file" name="file" accept="image/*" /> <br>
         <input type="submit" value="立刻上传">
     </form>

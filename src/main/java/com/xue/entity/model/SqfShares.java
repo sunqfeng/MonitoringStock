@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class SqfShares implements Serializable {
     private Integer id;
 
-    private String securitiesName;
+    private String securitiesName; //股票名称
 
     private String securitiesCode;
 
@@ -43,14 +43,30 @@ public class SqfShares implements Serializable {
         this.id = id;
     }
 
-    public String getSecuritiesName() {
+    /*
+     * <p>
+     * <li>
+     * 我是谁
+     * </li>
+     * </p>
+     * 
+     */
+
+    public String getSecuritiesName() { //股票名称
         return securitiesName;
     }
 
+    /*
+     * 股票名称
+     * 
+     */
     public void setSecuritiesName(String securitiesName) {
         this.securitiesName = securitiesName;
     }
 
+    /*
+     * 股票代码
+     */
     public String getSecuritiesCode() {
         return securitiesCode;
     }

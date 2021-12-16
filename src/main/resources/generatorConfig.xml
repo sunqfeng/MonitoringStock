@@ -45,7 +45,7 @@
  
 		<!-- table标签可以有多个，至少一个，tableName指定表名，可以使用_和%通配符 -->
 		<table tableName="sqf_shares" 
-		enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"
+		enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" domainObjectName="sqf_shares"
 		>
 
 			<!-- 是否只生成POJO对象 -->
