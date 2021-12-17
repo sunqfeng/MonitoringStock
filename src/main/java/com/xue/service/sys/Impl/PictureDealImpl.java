@@ -2,6 +2,7 @@ package com.xue.service.sys.Impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -78,10 +79,31 @@ public class PictureDealImpl implements PictureDeal {
 				sqfShares.setDelegationCategory("0");
 				String[] wtjgarry = StringManipulation.StringMatching(objstring, "委托价格").split("\"");
 				log.debug("wtjgarry=="+ wtjgarry );
-				String wtjg = StringManipulation.MatchingAmount(wtjgarry[3]);
+				String wtjg = StringManipulation.MatchingAmount( wtjgarry[3] );
 				log.debug("wtjg======"+wtjg);
-				sqfShares.setEntrustedPricePurchase(wtjg);
 
+				String[] scjsl = StringManipulation.StringMatching(objstring, "成交数量").split("\""); //成交数量
+				log.debug(scjsl[3]);
+
+				String[] sdjzj = StringManipulation.StringMatching(objstring, "冻结资金").split("\""); //冻结资金
+				log.debug(sdjzj[3]);
+
+				String scjsltmp = StringManipulation.MatchingAmount( scjsl[3] );
+				String sdjzjtmp = StringManipulation.MatchingAmount( sdjzj[3] );
+
+				log.debug( sdjzjtmp + "|"+ sdjzjtmp );
+
+				BigDecimal Bscjsl  = new BigDecimal( scjsltmp );
+				BigDecimal Bsdjzj  = new BigDecimal( sdjzjtmp );
+
+				log.debug( Bscjsl +"|"+ Bsdjzj );
+
+				BigDecimal sjjg =  Bsdjzj.divide(Bscjsl);
+
+				log.debug(sjjg);
+
+				//比较识别出来的价格与计算出来的价格差异，差异大使用计算出来的价格
+				sqfShares.setEntrustedPricePurchase(String.valueOf( sjjg ));
 				String[] cjslarry = StringManipulation.StringMatching(objstring, "成交数量").split("\"");
 				String cjsl = StringManipulation.MatchingAmount(cjslarry[3]);
 				sqfShares.setEntrustedQuantityPurchase(cjsl);
