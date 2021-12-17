@@ -15,7 +15,7 @@ public class MainController {
 	public static Logger log = Logger.getLogger(MainController.class);
 
 
-	@RequestMapping(value = "/navigationbarpage")
+	@RequestMapping(value = "/navigationbarpage") //导航条
 	public String uploadPage() {
 		return "navigationbarpage"; // 过度跳转页
 	}
