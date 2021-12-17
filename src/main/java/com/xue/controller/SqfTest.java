@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.xue.entity.model.SqfShares;
-import com.xue.repository.dao.SqfSharesMapper;
 import com.xue.tools.PtSqfTest;
 
 @Controller
