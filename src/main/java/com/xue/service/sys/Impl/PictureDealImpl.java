@@ -77,7 +77,9 @@ public class PictureDealImpl implements PictureDeal {
 			{
 				sqfShares.setDelegationCategory("0");
 				String[] wtjgarry = StringManipulation.StringMatching(objstring, "委托价格").split("\"");
+				log.debug("wtjgarry=="+ wtjgarry );
 				String wtjg = StringManipulation.MatchingAmount(wtjgarry[3]);
+				log.debug("wtjg======"+wtjg);
 				sqfShares.setEntrustedPricePurchase(wtjg);
 
 				String[] cjslarry = StringManipulation.StringMatching(objstring, "成交数量").split("\"");
