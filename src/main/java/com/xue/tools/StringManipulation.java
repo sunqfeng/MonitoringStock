@@ -150,9 +150,6 @@ public class StringManipulation {
 	}
 
 
-
-
-
 	public static void main(String[] args) {
 		
 		StringManipulation stringManipulation = new StringManipulation();
