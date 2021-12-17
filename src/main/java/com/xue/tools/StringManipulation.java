@@ -43,10 +43,12 @@ public class StringManipulation {
 		Matcher matcher = pattern.matcher(obj);
 		if ( matcher.find() )
 		{
+			log.debug(obj);
 			return obj;
 		}
 
 		try {
+			log.debug(matcher);
 			return StringMatching( tmp.substring(tmp.indexOf("}")+2 ),matcherobj );
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
