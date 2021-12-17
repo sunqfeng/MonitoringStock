@@ -20,7 +20,7 @@ public class SqfTest {
 
 		ptSqfTest.sqftest();
 
-		return "vuetest"; // 过度跳转页
+		return "vuetest"; // 过度跳转页.
 	}
 }
 
