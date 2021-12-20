@@ -56,6 +56,7 @@ public class SaticScheduleTask {
 
     	timedTaskImpl.TimedTaskSqfShares();
 
+
     	log.debug("configureTasks>>>>>>>>>>>>>>>>>>>>>end");
 
     }
