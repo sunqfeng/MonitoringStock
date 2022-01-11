@@ -65,7 +65,10 @@ public class StringManipulation {
 	 */
 
 	public static String MatchingAmount(String obj) {
-		String regxp = "((-)?(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){1,2})?)";
+		log.debug("MatchingAmount>>>>>>>>>>>>>>>>>>>>begin ");
+		log.debug("obj==="+obj);
+
+		String regxp = "((-)?(([0-9]{1}\\d*)|([0]{1}))(\\.(\\d){1,2})?)";
 		Pattern p = Pattern.compile(regxp);
 		Matcher m = p.matcher(obj);
 		if (m.find()) {
@@ -155,7 +158,7 @@ public class StringManipulation {
 		StringManipulation stringManipulation = new StringManipulation();
 //		String obj = "{\"words\":\"Call for Papers: Irritable bowel syr\"},{\"words\":\"arome\"},{\"words\":\"Call for Papers: Targeted therapies for cancel\"},{\"words\":\"We are pleased to announce the launch of our new article\"},{\"words\":\"BMC Medicine and bmc cancer are welcoming submissions\"},{\"words\":\"collection seeking submissions on all novel, impact\"},{\"words\":\"to a new joint collection on cancer targeted therapies We\"},{\"words\":\"advances of irritable bowel syndrome, including disease\"},{\"words\":\"are seeking manuscripts on all aspects of molecular targeted\"},{\"words\":\"burden, etiology, pathophysiology, and therapies.\"},{\"words\":\"etaples\"},{\"words\":\"Iding novel therapies, treatment resistance,\"},{\"words\":\"our Privacy\"},{\"words\":\"We use cookies to make sure that our website works properly, as well as some optional cookies to personalise content and advertising, provide social media features and analyse\"},{\"words\":\"how people use our site. By accepting some or all optional cookies you give consent to the processing of your personal data, including transfer to third parties, some in countries\"},{\"words\":\"tside of the European Economic Area that do not offer the same data protection standards as the\"},{\"words\":\"clicking on Manage Settings, where you can also find more information about how your personal data is processed. Further information can be found in our privacy_policy.\"},{\"words\":\"Ac\"}";
 //		String tmp = stringManipulation.StringMatchingBaiduApi(obj);
-		String tmp = stringManipulation.MatchingAmount("委托价格19.65");
+		String tmp = stringManipulation.MatchingAmount("证券代码002603");
 		System.out.println("tmp===="+tmp);
 
 	}
