@@ -18,9 +18,13 @@ public class SqfTest {
 	@RequestMapping(value = "/sqf")
 	public String uploadPage() {
 
-		ptSqfTest.sqftest();
+		System.out.println("hello,world!!!!");
 
-		return "vuetest"; // 过度跳转页.
+//		ptSqfTest.sqftest();
+
+		return null;
+//		return "vuetest"; // 过度跳转页.
+
 	}
 }
 
