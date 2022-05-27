@@ -18,7 +18,7 @@ public class SqfTest {
 	@RequestMapping(value = "/sqf")
 	public String uploadPage() {
 
-//		System.out.println("hello,world !!!!");
+		System.out.println("hello,world !!!!");
 
 //		ptSqfTest.sqftest();
 
