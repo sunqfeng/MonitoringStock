@@ -12,7 +12,10 @@ public interface SqfSharesMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(SqfShares record);
+    /*
+     * 执行插入操作
+     */
+    int insert(SqfShares record); //执行插入操作
 
     int insertSelective(SqfShares record);
 

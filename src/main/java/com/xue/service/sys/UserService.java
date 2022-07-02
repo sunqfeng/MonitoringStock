@@ -15,6 +15,9 @@ public interface UserService {
 	//改	
 	public int updateUser(User user);
 	//查	
+	/*
+	 * 获取用户id信息
+	 */
 	public List<User> getUser();
 	
 	

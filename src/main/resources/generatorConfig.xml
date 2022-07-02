@@ -44,8 +44,8 @@
 
  
 		<!-- table标签可以有多个，至少一个，tableName指定表名，可以使用_和%通配符 -->
-		<table tableName="sqf_shares" 
-		enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" domainObjectName="sqf_shares"
+		<table tableName="employees" 
+		enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" domainObjectName="Employees"
 		>
 
 			<!-- 是否只生成POJO对象 -->
@@ -54,7 +54,7 @@
 			<property name="ignoreQualifiersAtRuntime" value="true"></property>
 			<!-- 数据库中表名有前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 -->
 			<!-- <domainObjectRenamingRule searchString="^sys" replaceString=""/> -->
-			<generatedKey column="cron_id" sqlStatement="Mysql" identity="true"/>
+			<!--  <generatedKey column="cron_id" sqlStatement="Mysql" identity="true"/> -->
 
 		</table>
 

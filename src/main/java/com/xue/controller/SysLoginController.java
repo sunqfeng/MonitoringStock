@@ -110,10 +110,6 @@ public class SysLoginController {
 		//查询数据库user表中所有记录
 		
 		List<User> user = userService.getUser();
-		
 		return user;
-		
 	}
-	
-
 }

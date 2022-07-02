@@ -28,6 +28,9 @@ public class SqfSharesServiceImpl implements SqfSharesService {
 	}
 
 	@Override
+	/*
+	 * 执行插入操作
+	 */
 	public int insert(SqfShares record) {
 		// TODO Auto-generated method stub
 		return dao.insert(record);
